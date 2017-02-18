@@ -16,7 +16,7 @@ def read_version():
 
 
 def read_requirements(filename):
-	with open(filename, 'r') as handler:
+	with open(os.path.join(os.path.dirname(__file__), filename), 'r') as handler:
 		return [line for line in handler.readlines() if not line.startswith('-') and not len(line)]
 
 

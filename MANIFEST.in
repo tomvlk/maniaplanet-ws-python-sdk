@@ -1,0 +1,9 @@
+global-include *.py
+
+include *.txt CHANGELOG.md LICENSE README.md
+recursive-include maniaplanet/ws/tests *.txt
+
+graft examples
+
+recursive-exclude .tox *
+recursive-exclude maniaplanet *.pyc
