@@ -5,6 +5,10 @@ python:
   - 3.5
   - 3.6
 
+cache:
+  directories:
+    - $HOME/.cache/pip
+
 env:
   global:
     - secure: "tCfDpjisz6+rGHqKU2kMir2gX1ovC//qS+JmFETd1M+5eoie6jopj+v7oAmADVlJWKszUwB1Fo0tVSzjLvqQMayN4SAOtSHYbl50xWgDlkw6jSbf2ekeVnzEtrvXzNHfgja3nos6HMxQu8TlRusymxzUuaJesu4fikRYOwEmi44MBbjD5oGSvz7C2/Y87wqkpyJ4tgNqK7SYe5G3U+pxS2f9RC2QwkPdeT42y2Gl4KSQkOwYeGbGSBOA4Qq819498wEq+scNUi6VLH23UkwayPY6DQTyeu8gEpE8fxvEEFH4cT5aOB79Mu/9GHheHQHFKLdKMAzOeVUKJLMClW1KLEhFPn1eHhwDVCfh3m/KuFfsFl8Kq8XnMIHHh6c25xiavgI8+MZeU6mcRBvX0trkKAASvYk3TA4z9mI0bzllWRtVAKaH85UQbl8fmEvtCyesBPJu6DrVD/xlN0Sil2cd0gKKY/fihr992NziOZsXfuw8T9iiIWWLq87Y5ISt9KXEyFINlhMLqkDZa8BpZ7g3cKzl1iknpa8oG6f/9FwgiSC1fnu+pqsi55NYecK6SgyUpI82+z/yKOPk6Iu9i59E4znzlD/glows9JAq/R8vpvcf0GkBU5Is13aI/xash4mECGPUHFVaPA3Fq8mg9WxXACs3kpsZGgajlBIyn7kDovc="
@@ -28,8 +32,8 @@ matrix:
   last_finish: true
 
 before_install:
-  - echo -e "machine ws.maniaplanet.com\n  login ${CI_MP_USER}\n  password ${CI_MP_PASS}" >> ~/.netrc
-  - chmod og-rw ~/.netrc
+  - echo -e "machine ws.maniaplanet.com\n  login ${CI_MP_USER}\n  password ${CI_MP_PASS}" >> $HOME/.netrc
+  - chmod og-rw $HOME/.netrc
 
 install:
   - pip install tox -U pip
