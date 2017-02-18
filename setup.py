@@ -3,33 +3,38 @@ import re
 from setuptools import setup, find_packages
 
 
+def long_description():
+	try:
+		return open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
+	except IOError:
+		return None
+
+
+def read_version():
+	with open(os.path.join(os.path.dirname(__file__), 'maniaplanet', 'ws', '__init__.py')) as handler:
+		return re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", handler.read(), re.M).group(1)
+
+
+def read_requirements(filename):
+	with open(filename, 'r') as handler:
+		return [line for line in handler.readlines() if not line.startswith('-') and not len(line)]
+
+
 PKG = 'maniaplanet-ws-sdk'
-VERSION_FILE = os.path.join('maniaplanet', 'ws', '__init__.py')
-version = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", open(VERSION_FILE, 'rt').read(), re.M).group(1)
-
-README_FILE = 'README.md'
-readme = open(README_FILE).read()
-
-REQUIREMENTS_FILE = 'requirements.txt'
-requirements = open(REQUIREMENTS_FILE, 'rt').readlines()
-
-TEST_REQUIREMENTS_FILE = 'requirements-test.txt'
-test_requirements = open(TEST_REQUIREMENTS_FILE, 'rt').readlines()
-
 ######
 setup(
 	name=PKG,
-	version=version,
+	version=read_version(),
 	description='ManiaPlanet Webservice SDK for Python',
-	long_description=readme,
+	long_description=long_description(),
 	keywords='maniaplanet, sdk',
 	license='GNU Lesser General Public License v3 (LGPLv3)',
 	packages=find_packages(),
 	package_data={
 		'maniaplanet/ws/tests': ['maniaplanet/ws/tests/**.txt', 'maniaplanet/ws/tests/**.json']
 	},
-	install_requires=requirements,
-	tests_require=test_requirements,
+	install_requires=read_requirements('requirements.txt'),
+	tests_require=read_requirements('requirements-test.txt'),
 	test_suite='maniaplanet.sdk.tests',
 	include_package_data=True,
 
