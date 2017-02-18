@@ -5,3 +5,6 @@
 # Please look at the manual for more information.
 #
 __version__ = '0.0.1'
+__author__ = 'Tom Valk'
+
+from .api import ManiaplanetWS

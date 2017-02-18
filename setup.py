@@ -35,7 +35,7 @@ setup(
 	},
 	install_requires=read_requirements('requirements.txt'),
 	tests_require=read_requirements('requirements-test.txt'),
-	test_suite='maniaplanet.sdk.tests',
+	test_suite='nose.collector',
 	include_package_data=True,
 
 	author='Tom Valk',
