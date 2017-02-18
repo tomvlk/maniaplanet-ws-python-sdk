@@ -6,7 +6,7 @@ try:
 except ImportError:
 	# Python 2
 	import httplib as http_client
-http_client.HTTPConnection.debuglevel = 1
+# http_client.HTTPConnection.debuglevel = 1
 
 # You must initialize logging, otherwise you'll not see debug output.
 logging.basicConfig()

@@ -7,4 +7,7 @@
 __version__ = '0.0.1'
 __author__ = 'Tom Valk'
 
+API_URL = 'https://ws.maniaplanet.com'
+API_HOST = 'ws.maniaplanet.com'
+
 from .api import ManiaplanetWS

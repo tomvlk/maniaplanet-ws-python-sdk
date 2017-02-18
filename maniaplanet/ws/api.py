@@ -1,19 +1,21 @@
-import hashlib
 import requests
 import netrc
-import json
-import netrc
 
-from . import __version__
+from . import (
+	__version__,
+	API_URL,
+	API_HOST,
+	mixins
+)
 
-API_URL = 'https://ws.maniaplanet.com'
-API_HOST = 'ws.maniaplanet.com'
 
-
-class ManiaplanetWS(object):
-	DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)
-	DEFAULT_TIMEOUT = 10
-	DEFAULT_VERIFY = True
+class ManiaplanetWS(
+	mixins.RankingMixin,
+	object
+):
+	__DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)
+	__DEFAULT_TIMEOUT = 10
+	__DEFAULT_VERIFY = True
 
 	def __init__(
 		self,
@@ -23,23 +25,26 @@ class ManiaplanetWS(object):
 		verify=None, cert=None,
 		session=None,
 	):
-		self.username = username
-		self.password = password
+		self.__username = username
+		self.__password = password
 
-		self.timeout = timeout or self.DEFAULT_TIMEOUT
-		self.user_agent = user_agent or self.DEFAULT_USER_AGENT
-		self.verify = verify or self.DEFAULT_VERIFY
-		self.cert = cert
+		self.__timeout = timeout or self.__DEFAULT_TIMEOUT
+		self.__user_agent = user_agent or self.__DEFAULT_USER_AGENT
+		self.__verify = verify or self.__DEFAULT_VERIFY
+		self.__cert = cert
 
 		# Create or use the provided persistent storage for requests.
 		self.session = session if isinstance(session, requests.Session) else requests.Session()
 
-	def populate_session(self):
+		# Initiate super classes.
+		super(ManiaplanetWS, self).__init__()
+
+	def __populate_session(self):
 		"""
 		This method will update the session with the class properties.
 		"""
-		if self.username and self.password:
-			self.session.auth = (self.username, self.password)
+		if self.__username and self.__password:
+			self.session.auth = (self.__username, self.__password)
 		else:
 			# Try to get credentials from .netrc file.. This should do requests automatically, but didn't work so far.
 			auth = netrc.netrc().authenticators(API_HOST)
@@ -48,13 +53,14 @@ class ManiaplanetWS(object):
 			else:
 				self.session.auth = None
 
-		self.session.headers.update({'User-Agent': self.user_agent})
+		self.session.headers.update({'User-Agent': self.__user_agent})
 
-		self.session.verify = self.verify
-		self.session.cert = self.cert
+		self.session.verify = self.__verify
+		self.session.cert = self.__cert
 
 	def request(
-		self, path, args=None, data=None, method=None, files=None
+		self, path, args=None, data=None, method=None, files=None,
+		**kwargs
 	):
 		"""
 		Sending request to the API server with the given path. Will encode args and data (post/put) automatically.
@@ -64,8 +70,9 @@ class ManiaplanetWS(object):
 		:param data: Dictionary or tuple data.
 		:param method: Method of call, could be string: 'GET', 'POST', 'PUT', 'DELETE', and any other valid method.
 		:param files: Any files to post.
+
 		:type path: str
-		:type args: dict, tuple
+		:type args: dict
 		:type data: dict, tuple
 		:type method: str
 		:type files: tuple, dict
@@ -76,7 +83,13 @@ class ManiaplanetWS(object):
 		.. seealso:: http://docs.python-requests.org/en/master/user/advanced/#request-and-response-objects
 		"""
 		# Updating session storage with new user/pass and other data.
-		self.populate_session()
+		self.__populate_session()
+
+		# Pop some abstract parameters
+		if not args or not type(args) is dict:
+			args = dict()
+		args['offset'] = kwargs.pop('offset', 0)
+		args['length'] = kwargs.pop('length', 100)
 
 		# Normalize some variables.
 		if not path.startswith('/'):
@@ -95,7 +108,7 @@ class ManiaplanetWS(object):
 		# Execute call
 		res = self.session.send(
 			req,
-			timeout=self.timeout,
+			timeout=self.__timeout,
 		)
 
 		return res
