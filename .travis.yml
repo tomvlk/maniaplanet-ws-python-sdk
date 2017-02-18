@@ -29,6 +29,7 @@ matrix:
 
 before_install:
   - echo -e "machine ws.maniaplanet.com\n  login ${CI_MP_USER}\n  password ${CI_MP_PASS}" >> ~/.netrc
+  - chmod og-rw ~/.netrc
 
 install:
   - pip install tox -U pip
