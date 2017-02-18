@@ -1,22 +1,24 @@
 import hashlib
 import requests
+import netrc
 import json
+import netrc
 
 from . import __version__
 
 API_URL = 'https://ws.maniaplanet.com'
+API_HOST = 'ws.maniaplanet.com'
 
 
 class ManiaplanetWS(object):
 	DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)
 	DEFAULT_TIMEOUT = 10
-	DEFAULT_RETRIES = 2
 	DEFAULT_VERIFY = True
 
 	def __init__(
 		self,
 		username=None, password=None,
-		timeout=None, retries=None,
+		timeout=None,
 		user_agent=None,
 		verify=None, cert=None,
 		session=None,
@@ -25,7 +27,6 @@ class ManiaplanetWS(object):
 		self.password = password
 
 		self.timeout = timeout or self.DEFAULT_TIMEOUT
-		self.retries = retries or self.DEFAULT_RETRIES
 		self.user_agent = user_agent or self.DEFAULT_USER_AGENT
 		self.verify = verify or self.DEFAULT_VERIFY
 		self.cert = cert
@@ -37,8 +38,18 @@ class ManiaplanetWS(object):
 		"""
 		This method will update the session with the class properties.
 		"""
-		self.session.auth = (self.username, self.password)
+		if self.username and self.password:
+			self.session.auth = (self.username, self.password)
+		else:
+			# Try to get credentials from .netrc file.. This should do requests automatically, but didn't work so far.
+			auth = netrc.netrc().authenticators(API_HOST)
+			if auth and len(auth) == 3 and auth[0] and auth[2]:
+				self.session.auth = (auth[0], auth[2])
+			else:
+				self.session.auth = None
+
 		self.session.headers.update({'User-Agent': self.user_agent})
+
 		self.session.verify = self.verify
 		self.session.cert = self.cert
 
@@ -78,9 +89,13 @@ class ManiaplanetWS(object):
 			params=args,
 			data=data,
 			files=files,
+			auth=self.session.auth,
 		).prepare()
 
 		# Execute call
-		res = self.session.send(req)
+		res = self.session.send(
+			req,
+			timeout=self.timeout,
+		)
 
 		return res

@@ -6,6 +6,8 @@ python:
   - 3.6
 
 env:
+  global:
+    - secure: "hfA0GGmOjNcDluDOp1CBIuaxp7Q8YYudBHgXHgNHs4VCWmilPX4GkzASI2IxBdqbgvvdrHf8Vlr67aEQe1x7wb4vmN3nshVPGuWxjMPgzHXozFadRQsPifxya1ABWN62nYIms/JzWZzA6i7boglvtFilHHfKdwNYjk5xdeg44digkEYR+CvtuhD7g2RFttkKeThK+8JuWZPtVdwvjbd3Wbza9uu8n8/6hCcKse/mpACtA1DVaapcd0TaDe/Tq3aEVsEbA0sdJJqODBObWinAW2iTw+Qd5N002njQOwrZqHWvzvH8IP8MpJDRhyWpJ/cyoJnZ401/VyD/v1jhcYTO6s+mB7j1HDNsZTDcc4l5IyZMbZiyeHjm468pYxfGDgBt3jwrns0wJ/gAPUcu9vyJNHYKJXpTZzVYUA23CzL5Ft/Qb7E9vB8NCsPs05qoUgkS0vTQSFNjn9FLVM8AkZMnb/Wue75/mNU6Yipr9/o2sFomScTyjqRKmO9Ys/YGqisgT+mepwwEcvBntg5AUAqb/XFy63Rm7/qiF8Y1LtKTb4jSJYXLugeYm8GrBzTXbnkCA7oT280imuTKrjPjlafScZ542dwZ5eitFSNlfIrTCsu2DM4lr8J2hrEHBeXziF6hD8PgQCmfl4ua7smGr8sBg/20OVKPqauGthPpT8uRAvk="
   matrix:
     - TOXENV=py33
     - TOXENV=py34
@@ -24,6 +26,9 @@ matrix:
       env: TOXENV=py36
 
   last_finish: true
+
+before_install:
+  - echo -e "machine ws.maniaplanet.com\n  login ${CI_MP_USER}\n  password ${CI_MP_PASS}" >> ~/.netrc
 
 install:
   - pip install tox -U pip
