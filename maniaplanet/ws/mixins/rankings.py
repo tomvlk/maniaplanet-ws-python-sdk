@@ -75,7 +75,8 @@ class Methods(WebserviceMethods):
 		:rtype: requests.Response
 		:return:
 		"""
-		return self.__ranking_request(**kwargs, url_post='zone/')
+		kwargs.update({'url_post': 'zone/'})
+		return self.__ranking_request(**kwargs)
 
 	def player(self, **kwargs):
 		"""
@@ -92,7 +93,8 @@ class Methods(WebserviceMethods):
 		:rtype: requests.Response
 		:return:
 		"""
-		return self.__ranking_request(**kwargs, url_post='player/{login}/')
+		kwargs.update({'url_post': 'player/{login}/'})
+		return self.__ranking_request(**kwargs)
 
 	def zone(self, **kwargs):
 		"""
@@ -109,7 +111,8 @@ class Methods(WebserviceMethods):
 		:rtype: requests.Response
 		:return:
 		"""
-		return self.__ranking_request(**kwargs, url_post='zone/{path}/')
+		kwargs.update({'url_post': 'zone/{path}/'})
+		return self.__ranking_request(**kwargs)
 
 
 class SoloMethods(Methods):
