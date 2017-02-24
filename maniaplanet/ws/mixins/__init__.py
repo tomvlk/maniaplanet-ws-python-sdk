@@ -17,4 +17,5 @@ class WebserviceMethods(WebserviceSubject):
 	pass
 
 
-from .rankings import RankingMixin
+from .rankings import RankingsMixin
+from .servers import ServersMixin

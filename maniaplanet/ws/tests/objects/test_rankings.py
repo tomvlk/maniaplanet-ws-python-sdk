@@ -1,7 +1,7 @@
 from ..base import ClientTestCase
 
 
-class RankingTest(ClientTestCase):
+class RankingsTest(ClientTestCase):
 	def test_retrieval(self):
 		request_res = self.client.request('canyon/rankings/multiplayer/zone/', args=dict(
 			offset=0,

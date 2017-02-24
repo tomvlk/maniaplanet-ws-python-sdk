@@ -1,9 +1,12 @@
-# ManiaPlanet Webservice SDK Library.
-# Copyright Tom Valk. Please see LICENSE file in root of project.
-#
-# This file is the main SDK package file of the Python SDK.
-# Please look at the manual for more information.
-#
+"""
+Maniaplanet Webservice SDK Library for Python 3.4+.
+Copyright Tom Valk. Please see LICENSE file in root of project.
+
+This module provides a python interface for communicating with the Maniaplanet Webservice.
+For this module to work you need to have a Maniaplanet account and Webservice credentials. The Webservice credentials
+can be retrieved from the player page:
+https://player.maniaplanet.com
+"""
 __version__ = '0.0.1'
 __author__ = 'Tom Valk'
 

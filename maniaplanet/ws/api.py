@@ -10,7 +10,8 @@ from . import (
 
 
 class ManiaplanetWS(
-	mixins.RankingMixin,
+	mixins.RankingsMixin,
+	mixins.ServersMixin,
 	object
 ):
 	__DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)

@@ -134,7 +134,7 @@ class Subject(WebserviceSubject):
 		super().__init__(client)
 
 
-class RankingMixin(WebserviceMixin):
+class RankingsMixin(WebserviceMixin):
 	def __init__(self):
 		self.rankings = Subject(self)
 
