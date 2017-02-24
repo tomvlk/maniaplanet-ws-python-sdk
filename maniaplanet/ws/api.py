@@ -120,8 +120,11 @@ class ManiaplanetWS(
 		# Pop some abstract parameters
 		if not args or not type(args) is dict:
 			args = dict()
-		args['offset'] = kwargs.pop('offset', 0)
-		args['length'] = kwargs.pop('length', 100)
+
+		if not 'offset' in args or type(args['offset']) is not int:
+			args['offset'] = kwargs.pop('offset', 0)
+		if not 'length' in args or type(args['length']) is not int:
+			args['length'] = kwargs.pop('length', 100)
 
 		# Normalize some variables.
 		if not path.startswith('/'):
