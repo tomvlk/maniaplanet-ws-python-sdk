@@ -6,7 +6,7 @@ from .. import ManiaplanetWS
 class ClientRequestTest(unittest.TestCase):
 
 	def setUp(self):
-		self.client = ManiaplanetWS(username='wrong', password='wrong')
+		self.client = ManiaplanetWS(username='wrong', password='wrong', raw_responses=True, use_exceptions=False)
 
 	def test_notfound_request(self):
 		response = self.client.request('test')
