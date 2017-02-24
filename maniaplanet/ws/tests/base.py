@@ -10,7 +10,10 @@ class ClientTestCase (unittest.TestCase):
 		super(ClientTestCase, self).__init__(*args, **kwargs)
 
 	@property
-	def client(self):
+	def client(self, **kwargs):
+		kwargs.setdefault('raw_responses', True)
+		kwargs.setdefault('use_exceptions', False)
+
 		if not self.__client:
-			self.__client = ManiaplanetWS()
+			self.__client = ManiaplanetWS(**kwargs)
 		return self.__client

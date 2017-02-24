@@ -25,7 +25,34 @@ class ManiaplanetWS(
 		user_agent=None,
 		verify=None, cert=None,
 		session=None,
+		raw_responses=False,
+		use_exceptions=True,
 	):
+		"""
+		Initiate the Maniaplanet Webservice SDK.
+
+		:param username: username of the webservice account.
+		:param password: password of the webservice account.
+		:param timeout: maximum timeout in seconds (optional).
+		:param user_agent: customize the user-agent used to communicate with the webservice.
+		:param verify: override default enabled SSL/TLS verify process.
+		:param cert: override default certificate checking against (SSL/TLS).
+		:param session: give a custom requests.Session instance to use.
+		:param raw_responses: override and set to True to get back requests.Response instead of parsed dictionaries.
+		:param use_exceptions: 	override and set to False to disable exception throws on response errors.
+								Not raising on 404 errors!
+
+		:type username: str
+		:type password: str
+		:type timeout: int
+		:type user_agent: str
+		:type verify: bool
+		:type cert: str
+		:type session: requests.Session
+		:type raw_responses: bool
+		:type use_exceptions: bool
+		"""
+
 		self.__username = username
 		self.__password = password
 
@@ -33,6 +60,10 @@ class ManiaplanetWS(
 		self.__user_agent = user_agent or self.__DEFAULT_USER_AGENT
 		self.__verify = verify or self.__DEFAULT_VERIFY
 		self.__cert = cert
+
+		# Public behaviour variables that could be changed later on.
+		self.raw_responses = bool(raw_responses)
+		self.use_exceptions = bool(use_exceptions)
 
 		# Create or use the provided persistent storage for requests.
 		self.session = session if isinstance(session, requests.Session) else requests.Session()
@@ -79,7 +110,7 @@ class ManiaplanetWS(
 		:type files: tuple, dict
 
 		:return: Response object from requests module.
-		:rtype: requests.Response
+		:rtype: requests.Response, dict
 
 		.. seealso:: http://docs.python-requests.org/en/master/user/advanced/#request-and-response-objects
 		"""
@@ -112,4 +143,9 @@ class ManiaplanetWS(
 			timeout=self.__timeout,
 		)
 
+		if self.raw_responses:
+			return res
+
+		# TODO: Implement some kind of parsing. But don't parse away the response status_code.
+		# TODO: Find some nice error/exception flow based on the response status_code.
 		return res
