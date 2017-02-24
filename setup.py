@@ -20,7 +20,7 @@ def read_requirements(filename):
 		return [line for line in handler.readlines() if not line.startswith('-') and not len(line)]
 
 
-PKG = 'maniaplanet-ws-sdk'
+PKG = 'maniaplanet-ws'
 ######
 setup(
 	name=PKG,
