@@ -1,18 +1,20 @@
 from social_core.backends.oauth import BaseOAuth2
 
+from .. import *
+
 
 class ManiaConnectOAuth2(BaseOAuth2):
 	"""
 	ManiaConnect ManiaPlanet OAuth2 Backend.
 	"""
 	name = 'maniaconnect'
-	AUTHORIZATION_URL = 'https://ws.maniaplanet.com/oauth2/authorize/'
-	ID_KEY = 'id'
+	AUTHORIZATION_URL = API_OAUTH_AUTHORIZATION_URL
+	ID_KEY = API_OAUTH_ID_KEY
 
-	REFRESH_TOKEN_URL = 'https://ws.maniaplanet.com/oauth2/token/'
-	REFRESH_TOKEN_METHOD = 'POST'
-	ACCESS_TOKEN_URL = 'https://ws.maniaplanet.com/oauth2/token/'
-	ACCESS_TOKEN_METHOD = 'POST'
+	REFRESH_TOKEN_URL = API_OAUTH_REFRESH_TOKEN_URL
+	REFRESH_TOKEN_METHOD = API_OAUTH_REFRESH_TOKEN_METHOD
+	ACCESS_TOKEN_URL = API_OAUTH_ACCESS_TOKEN_URL
+	ACCESS_TOKEN_METHOD = API_OAUTH_ACCESS_TOKEN_METHOD
 
 	SCOPE_SEPARATOR = ' '
 	RESPONSE_TYPE = 'code'
@@ -37,6 +39,7 @@ class ManiaConnectOAuth2(BaseOAuth2):
 		:param kwargs:
 		:return:
 		"""
+		# TODO: Use WS class.
 		headers = {
 			'Authorization': 'Bearer {}'.format(access_token),
 			'Accept': 'application/json',
