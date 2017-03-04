@@ -2,6 +2,9 @@ from . import WebserviceMixin, WebserviceMethods
 
 
 class Methods(WebserviceMethods):
+	"""
+	Zones Methods.
+	"""
 	def detail(self, id=None, path=None):
 		"""
 		Get single zone information on ID or Path.
@@ -97,6 +100,9 @@ class Methods(WebserviceMethods):
 #
 
 class ZonesMixin(WebserviceMixin):
+	"""
+	Zones mixin.
+	"""
 	def __init__(self):
 		self.zones = Methods(self)
 

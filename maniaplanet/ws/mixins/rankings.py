@@ -2,6 +2,13 @@ from . import WebserviceSubject, WebserviceMixin, WebserviceMethods
 
 
 def get_title_endpoint(title):
+	"""
+	Get the endpoint for the title string ID.
+	:param title:
+	:type title: str
+	:return: endpoint.
+	:rtype: str
+	"""
 	mapping = {
 		'SMStorm': 'storm',
 		'TMCanyon': 'canyon',
@@ -16,6 +23,9 @@ def get_title_endpoint(title):
 
 
 class Methods(WebserviceMethods):
+	"""
+	Rankings methods.
+	"""
 
 	def __init__(self, client, section, specific=None):
 		self.__section = section
@@ -116,6 +126,9 @@ class Methods(WebserviceMethods):
 
 
 class SoloMethods(Methods):
+	"""
+	Submethods solo.
+	"""
 	def __init__(self, client, section):
 		self.challenge = Methods(client, 'solo', 'challenge')
 		super().__init__(client, section)
@@ -126,7 +139,9 @@ class SoloMethods(Methods):
 #
 
 class Subject(WebserviceSubject):
-
+	"""
+	Rankings subject.
+	"""
 	def __init__(self, client):
 		self.solo = SoloMethods(client, 'solo')
 		self.multiplayer = Methods(client, 'multiplayer')
@@ -135,6 +150,9 @@ class Subject(WebserviceSubject):
 
 
 class RankingsMixin(WebserviceMixin):
+	"""
+	Mixin for Rankings
+	"""
 	def __init__(self):
 		self.rankings = Subject(self)
 

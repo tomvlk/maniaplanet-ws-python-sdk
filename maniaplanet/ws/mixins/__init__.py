@@ -1,9 +1,19 @@
+"""
+Maniaplanet Webservice SDK for Python.
+"""
+
 
 class WebserviceMixin(object):
+	"""
+	Mixin base class.
+	"""
 	pass
 
 
 class WebserviceSubject(object):
+	"""
+	Subject base class.
+	"""
 	def __init__(self, client):
 		"""
 		Initiate the subject class.
@@ -14,6 +24,9 @@ class WebserviceSubject(object):
 
 
 class WebserviceMethods(WebserviceSubject):
+	"""
+	Methods base class.
+	"""
 	pass
 
 

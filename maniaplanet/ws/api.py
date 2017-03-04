@@ -1,3 +1,8 @@
+"""
+Maniaplanet Webservice SDK for Python.
+
+Webservice class implements all the client and methods.
+"""
 import requests
 import netrc
 
@@ -16,6 +21,10 @@ class ManiaplanetWS(
 	mixins.ZonesMixin,
 	object
 ):
+	"""
+	The webservice class implements all mixins (the parts) of the API.
+	"""
+
 	__DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)
 	__DEFAULT_TIMEOUT = 10
 	__DEFAULT_VERIFY = True

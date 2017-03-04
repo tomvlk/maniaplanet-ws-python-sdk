@@ -2,6 +2,9 @@ from . import WebserviceMixin, WebserviceMethods
 
 
 class Methods(WebserviceMethods):
+	"""
+	Titles Methods.
+	"""
 	def detail(self, id):
 		"""
 		Get single server details by login of server.
@@ -19,6 +22,9 @@ class Methods(WebserviceMethods):
 #
 
 class TitlesMixin(WebserviceMixin):
+	"""
+	Titles mixin
+	"""
 	def __init__(self):
 		self.titles = Methods(self)
 
