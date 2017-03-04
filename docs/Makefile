@@ -50,7 +50,7 @@ gh-deploy:
 	@echo "Build docs..."
 	make html
 	@echo "Commit..."
-	@cd $(GHDIR);\
+	@cd $(GH_DIR);\
 		git add --all;\
 		git commit -m "Update documentation...";\
 		git push -u origin $(GH_BRANCH);
