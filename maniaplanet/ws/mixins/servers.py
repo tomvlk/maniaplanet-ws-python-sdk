@@ -1,4 +1,4 @@
-from . import WebserviceSubject, WebserviceMixin, WebserviceMethods
+from . import WebserviceMixin, WebserviceMethods
 
 
 class Methods(WebserviceMethods):

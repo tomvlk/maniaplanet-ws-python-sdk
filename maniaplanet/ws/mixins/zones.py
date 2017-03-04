@@ -1,4 +1,4 @@
-from . import WebserviceSubject, WebserviceMixin, WebserviceMethods
+from . import WebserviceMixin, WebserviceMethods
 
 
 class Methods(WebserviceMethods):
@@ -80,7 +80,6 @@ class Methods(WebserviceMethods):
 			return self._client.request('/zones/path/{:s}/population/'.format(path))
 		else:
 			raise Exception('Can only get population of a zone by id or path. You must provide one of the two.')
-		pass
 
 	def id(self, path):
 		"""
