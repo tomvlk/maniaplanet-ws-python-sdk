@@ -19,3 +19,4 @@ class WebserviceMethods(WebserviceSubject):
 
 from .rankings import RankingsMixin
 from .servers import ServersMixin
+from .titles import TitlesMixin
