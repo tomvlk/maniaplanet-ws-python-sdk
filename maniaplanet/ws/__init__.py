@@ -13,12 +13,12 @@ __author__ = 'Tom Valk'
 API_URL = 'https://ws.maniaplanet.com'
 API_HOST = 'ws.maniaplanet.com'
 
-API_OAUTH_AUTHORIZATION_URL = 'https://ws.maniaplanet.com/oauth2/authorize/'
+API_OAUTH_AUTHORIZATION_URL = API_URL + '/oauth2/authorize/'
 API_OAUTH_ID_KEY = 'id'
 
-API_OAUTH_REFRESH_TOKEN_URL = 'https://ws.maniaplanet.com/oauth2/token/'
+API_OAUTH_REFRESH_TOKEN_URL = API_URL + '/oauth2/token/'
 API_OAUTH_REFRESH_TOKEN_METHOD = 'POST'
-API_OAUTH_ACCESS_TOKEN_URL = 'https://ws.maniaplanet.com/oauth2/token/'
+API_OAUTH_ACCESS_TOKEN_URL = API_URL + '/oauth2/token/'
 API_OAUTH_ACCESS_TOKEN_METHOD = 'POST'
 
 from .api import ManiaplanetWS
