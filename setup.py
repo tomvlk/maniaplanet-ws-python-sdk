@@ -35,6 +35,9 @@ setup(
 	},
 	install_requires=read_requirements('requirements.txt'),
 	tests_require=read_requirements('requirements-test.txt'),
+	extras_require={
+		'ManiaConnect': ['social-auth-core>=1.2.0']
+	},
 	test_suite='nose.collector',
 	include_package_data=True,
 
