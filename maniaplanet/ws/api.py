@@ -13,6 +13,7 @@ class ManiaplanetWS(
 	mixins.RankingsMixin,
 	mixins.ServersMixin,
 	mixins.TitlesMixin,
+	mixins.ZonesMixin,
 	object
 ):
 	__DEFAULT_USER_AGENT = 'maniaplanet-ws-python-sdk/{} requests/{}'.format(__version__, requests.__version__)
