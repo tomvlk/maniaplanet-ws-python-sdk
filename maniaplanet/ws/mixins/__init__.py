@@ -34,3 +34,4 @@ from .rankings import RankingsMixin
 from .servers import ServersMixin
 from .titles import TitlesMixin
 from .zones import ZonesMixin
+from .maniaflash import ManiaflashMixin

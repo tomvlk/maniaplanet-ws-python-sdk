@@ -19,6 +19,7 @@ class ManiaplanetWS(
 	mixins.ServersMixin,
 	mixins.TitlesMixin,
 	mixins.ZonesMixin,
+	mixins.ManiaflashMixin,
 	object
 ):
 	"""
