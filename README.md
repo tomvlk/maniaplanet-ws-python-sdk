@@ -1,4 +1,4 @@
-# ManiaPlanet Webservice SDK for Python 3
+# ManiaPlanet (4) Webservice SDK for Python 3
 
 [![Build Status](https://travis-ci.org/tomvlk/maniaplanet-ws-python-sdk.svg?branch=master)](https://travis-ci.org/tomvlk/maniaplanet-ws-python-sdk)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/22f4b56bdecd48f49f728b5025818d2a)](https://www.codacy.com/app/tomvalk/maniaplanet-ws-python-sdk)

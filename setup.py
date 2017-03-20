@@ -11,7 +11,7 @@ def long_description():
 
 
 def read_version():
-	with open(os.path.join(os.path.dirname(__file__), 'maniaplanet', 'ws', '__init__.py')) as handler:
+	with open(os.path.join(os.path.dirname(__file__), 'maniaplanet_ws', '__init__.py')) as handler:
 		return re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", handler.read(), re.M).group(1)
 
 
@@ -31,7 +31,7 @@ setup(
 	license='GNU Lesser General Public License v3 (LGPLv3)',
 	packages=find_packages(),
 	package_data={
-		'maniaplanet/ws/tests': ['maniaplanet/ws/tests/**.txt', 'maniaplanet/ws/tests/**.json']
+		'maniaplanet_ws/tests': ['maniaplanet_ws/tests/**.txt', 'maniaplanet_ws/tests/**.json']
 	},
 	install_requires=read_requirements('requirements.txt'),
 	tests_require=read_requirements('requirements-test.txt'),

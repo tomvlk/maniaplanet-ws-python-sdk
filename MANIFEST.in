@@ -1,7 +1,7 @@
 global-include *.py
 
 include *.txt CHANGELOG.md LICENSE README.md
-recursive-include maniaplanet/ws/tests *.txt
+recursive-include maniaplanet_ws/tests *.txt
 
 graft examples
 

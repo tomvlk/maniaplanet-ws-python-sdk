@@ -21,4 +21,20 @@ API_OAUTH_REFRESH_TOKEN_METHOD = 'POST'
 API_OAUTH_ACCESS_TOKEN_URL = API_URL + '/oauth2/token/'
 API_OAUTH_ACCESS_TOKEN_METHOD = 'POST'
 
+######################################################################################
 from .api import ManiaplanetWS
+
+__all__ = [
+	'ManiaplanetWS',
+	
+	'__author__',
+	'__version__',
+	'API_URL',
+	'API_HOST',
+	'API_OAUTH_AUTHORIZATION_URL',
+	'API_OAUTH_ID_KEY',
+	'API_OAUTH_REFRESH_TOKEN_URL',
+	'API_OAUTH_REFRESH_TOKEN_METHOD',
+	'API_OAUTH_ACCESS_TOKEN_URL',
+	'API_OAUTH_ACCESS_TOKEN_METHOD',
+]

@@ -3,7 +3,7 @@ Python Social Auth backend for Maniaplanet WS SDK for Python.
 """
 from social_core.backends.oauth import BaseOAuth2
 
-from .. import *
+from maniaplanet_ws import *
 
 
 class ManiaConnectOAuth2(BaseOAuth2):

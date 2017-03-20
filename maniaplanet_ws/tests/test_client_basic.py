@@ -1,6 +1,6 @@
 import unittest
 
-from .. import ManiaplanetWS
+from maniaplanet_ws import ManiaplanetWS
 
 
 class ClientBasicTest(unittest.TestCase):

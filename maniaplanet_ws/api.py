@@ -3,14 +3,15 @@ Maniaplanet Webservice SDK for Python.
 
 Webservice class implements all the client and methods.
 """
-import requests
 import netrc
 
-from . import (
+import requests
+
+from maniaplanet_ws import mixins
+from maniaplanet_ws import (
 	__version__,
 	API_URL,
-	API_HOST,
-	mixins
+	API_HOST
 )
 
 

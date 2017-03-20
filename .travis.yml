@@ -39,7 +39,7 @@ install:
   - pip install tox codacy-coverage -U pip
 
 script:
-  - tox -e $TOXENV -- --with-coverage --cover-package=maniaplanet.ws --cover-xml --cover-xml-file=coverage.xml
+  - tox -e $TOXENV -- --with-coverage --cover-package=maniaplanet_ws --cover-xml --cover-xml-file=coverage.xml
 
 after_success:
   - python-codacy-coverage -r coverage.xml

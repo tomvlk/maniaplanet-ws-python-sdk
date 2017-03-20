@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Maniaplanet Webservice SDK for Python 3.4+
-==========================================
+Maniaplanet 4 Webservice SDK for Python 3.4+
+============================================
 
 :Page Status: Incomplete
 
